@@ -29,19 +29,18 @@
 * Output: 0
 * 
 * Constraints:
-* 0 <= s.length <= 5 * 104
+* 0 <= s.length <= 5 * 10^4
 * s consists of English letters, digits, symbols and spaces.
 */
  
 import java.io.OutputStream;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.lang.Character;
 
 
 public class LongestSubstringWithoutRepeatingCharacters {
 	
 	public static void main(String[] args){
-		//String inpString = "abcabcbb";
+		String inpString = "abcabcbb";
 		//String inpString = "bbbbb";
 		//String inpString = "pwwkew";
 		//String inpString = "";
@@ -49,12 +48,46 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		LongestSubstringNoCharactersRepeated(inpString);
 	}
 
-	public static String LongestSubstringNoCharactersRepeated(String inputString){
+	public static int LongestSubstringNoCharactersRepeated(String inputString){
 		String outputString = "";
-		
-		
+		int strLen = inputString.trim().length();	//int variable can accomodate 5 * 10^4 string length
+		String firstCharacter = "";
 
-		return outputString;
+		//System.out.println("strLen = "+strLen);
+
+		if (strLen == 0 || inputString.isEmpty() || inputString.equals("\\s+")) {
+			System.out.println("RESULT: outputString = "+outputString+", Length = "+outputString.length());
+			return 0;
+		}
+
+		inputString = inputString.substring(1, strLen);	//chop off first character (string count from 0)
+		strLen = inputString.length();
+		//System.out.println("strLen = "+strLen+", inputString = "+inputString);
+
+		while (strLen > 0){
+			int j = 0;
+			char ch = inputString.charAt(j);
+			//System.out.println("ch = "+ch);
+			
+			if (outputString.indexOf(Character.toString(ch)) == -1){
+				outputString += Character.toString(ch);
+				//System.out.println("outputString = "+outputString);
+			}
+			else {
+				inputString = inputString.substring(1, strLen); 	//chop off first character
+				strLen = inputString.length();
+				continue;
+			}
+
+			inputString = inputString.substring(1, strLen); 	//chop off first character
+			strLen = inputString.length();
+			//System.out.println("strLen (final)= "+strLen);
+		}
+		
+		
+		//System.out.println("RESULT: outputString = "+outputString+", Length = "+outputString.length());
+
+		return outputString.length();
 	}
 
 

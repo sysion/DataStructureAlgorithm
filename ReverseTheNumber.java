@@ -39,18 +39,35 @@ import java.lang.Math;
 public class ReverseTheNumber {
 	public static void main(String[] args){
 		//int inpNumber = 4;
-		//int inpNumber = 12345;
+		int inpNumber = 12345;
 		//int inpNumber = 31203;
 		//int inpNumber = 2123;
 		//int inpNumber = 2300;
-		int inpNumber = (int)(23 * Math.pow(10, 7));
-		System.out.println(inpNumber);
 
 		ReverseTheGivenNumber(inpNumber);
 	}
 
 	public static int ReverseTheGivenNumber(int num){
-		
+		int numReverse = 0;
+		int numLen = (int)Math.log10(num) + 1;
+
+		int base10 = 10;
+		int tmpNum = 0;
+		int powExp = 1;
+
+		while (powExp <= numLen){
+			tmpNum = num / base10;
+			tmpNum = tmpNum * base10;
+			numReverse += (num - tmpNum) * (int)Math.pow(base10, numLen - powExp);
+			
+			num = tmpNum / base10;
+			tmpNum = 0;
+			powExp++;
+		}
+
+		//System.out.println("numReverse = "+numReverse);
+
+		return numReverse;
 	}
 
 

@@ -52,7 +52,7 @@ public class TwoSumLessThanTarget {
 			else k--;
 		}
 		
-		System.out.println(SumLessThanTarget);
+		//System.out.println(SumLessThanTarget);
 
 		return SumLessThanTarget;
 	}
